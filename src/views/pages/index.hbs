@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JamestheShine</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div id="headerContainer">
+      <div id="logo">
+        <a href="/">JamestheShine</a>
+      </div>
+      <ul id="navbar">
+        <li class="{{ activeIf page 'homepage' }}"><a href="/">Homepage</a></li>
+        <li class="{{ activeIf page 'electromagnet' }}"><a href="/electromagnet">Electromagnet</a></li>
+        <li class="{{ activeIf page 'crossbow' }}"><a href="/crossbow">Crossbow</a></li>
+        <li class="{{ activeIf page 'origami' }}"><a href="/origami">Origami</a></li>
+        <li class="{{ activeIf page 'photogallery' }}"><a href="/photogallery">Photogallery</a></li>
+        <li class="{{ activeIf page 'bibliography' }}"><a href="/bibliography">Bibliography</a></li>
+      </ul>
+      <div id="headerImage">
+        <div id="slogan">
+          James chose this name
+        </div>
+      </div>
+      <div id="headerLinks">
+        <a href="/"><img src="img/icon_home.png" /><span>Homepage</span></a>
+        <a href="/sitemap"><img src="img/icon_sitemap.png" /><span>Site map</span></a>
+        <a href="/rss"><img src="img/icon_rss.png" /><span>RSS</span></a>
+        <a><img src="img/icon_print.png" /><span>Print</span></a>
+      </div>
+      <div id="searchContainer">
+        <input id="searchInput" />
+        <button id="searchButton">Search</button>
+      </div>
+    </div>
+  </header>
+  <div id="mainContainer">
+    {{#with poll}}
+    <div id="poll">
+      <div id="pollHeader">Poll</div>
+      <div id="pollBody">
+        <span id="pollQuestion">{{question}}</span>
+        {{#each answers}}
+          <p><a>{{name}}</a> ({{votes}})</p>
+          <div class="pollBar" style="width: {{getPercent votes ../answers}}%"></div>
+        {{/each}}
+        <hr>
+        Total votes: <b>{{getTotalVotes answers}}</b>
+      </div>
+    </div>
+    {{/with}}
+    <div id="main">
+      {{> (lookup . 'page') }}
+    </div>
+  </div>
+  <footer>
+    <div id="footerInner">
+      © 2013, 2023 All rights reserved.
+    </div>
+  </footer>
+</body>
+</html>
